@@ -1,0 +1,7 @@
+localhost
+
+[jenkins]
+${jenkins_ip}
+
+[jenkins_elb]
+${jenkins_elb}

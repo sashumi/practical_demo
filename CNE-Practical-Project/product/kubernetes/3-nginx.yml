@@ -1,0 +1,67 @@
+---
+# step 3.1 - prepare nginx proxy configurations
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-proxy-config
+  namespace: cne
+data:
+  default.conf:
+    server {
+    listen 80;
+    location / {
+    proxy_pass http://frontend:5000;
+    }
+    }
+
+---
+# step 3.2 - create deployment for nginx proxies
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: cne
+  labels:
+    app: nginx
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-proxy-config
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: nginx-proxy-config
+          configMap:
+            name: nginx-proxy-config
+
+---
+# step 3.3 - create loadbalancer service for nginx proxies
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-load-balancer
+  namespace: cne
+  labels:
+    app: nginx
+
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
