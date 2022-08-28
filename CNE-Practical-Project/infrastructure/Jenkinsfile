@@ -34,7 +34,7 @@ pipeline {
 
     stage('Create RDS Instances') {
       steps {
-        sh '''cd infrastructure/rds
+        sh '''cd CNE-Practical-Project/infrastructure/rds
               # download ansible vault password
               aws s3 cp \
                 s3://shamsi-project2/keys/vault_password.txt \
@@ -52,7 +52,7 @@ pipeline {
 
     stage('Create EKS Cluster') {
       steps {
-        sh '''cd infrastructure/eks
+        sh '''cd CNE-Practical-Project/infrastructure/eks
               echo "EKS cluster is already created. So silencing this stage."
 
                 # run terraform to ensure eks subnets are present and
