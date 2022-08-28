@@ -17,7 +17,7 @@ module "rds_test" {
   max_allocated_storage = 100
   storage_encrypted = false
 
-  name = "prj2rdstest"
+  db_name = "prj2rdstest"
   # using TF_VAR method as described on
   # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
   username = var.username
@@ -82,7 +82,7 @@ module "rds_production" {
   max_allocated_storage = 100
   storage_encrypted = false
 
-  name = "prj2rdsproduction"
+  db_name = "prj2rdsproduction"
   # using TF_VAR method as described on
   # https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
   username = var.username
