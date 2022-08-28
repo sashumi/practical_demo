@@ -1,7 +1,7 @@
 output "prod_rds_hostname" {
-  value = module.rds_production.endpoint
+  value = module.rds_production.address
 }
 
 output "test_rds_hostname" {
-  value = module.rds_test.endpoint
+  value = module.rds_test.address
 }
