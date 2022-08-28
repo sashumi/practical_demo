@@ -3,6 +3,7 @@ resource "aws_instance" "pytest_vm" {
   ami = var.ami
   availability_zone = "eu-west-1c"
   instance_type = "t2.micro"
+  disable_api_termination = false
   key_name = var.machine_key
   vpc_security_group_ids = [
     data.aws_security_group.allow_ssh.id,
