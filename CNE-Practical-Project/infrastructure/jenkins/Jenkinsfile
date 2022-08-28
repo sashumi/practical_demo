@@ -6,8 +6,11 @@ pipeline {
         sh 'pwd'
         sh 'ls -lahrt'
         sh 'cd CNE-Practical-Project'
-        sh 'ls -lahrt infrastructure/jenkins'
-        sh 'ls -lahrt infrastructure/ansible'
+        sh 'pwd'
+        sh 'cd infrastructure/jenkins'
+        sh 'ls -lahrt'
+        sh 'cd ../ansible'
+        sh 'ls -lahrt'
         sh 'cat .gitignore'
       }
     }
