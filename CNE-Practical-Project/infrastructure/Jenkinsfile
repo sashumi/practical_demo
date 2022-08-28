@@ -8,6 +8,10 @@ pipeline {
                 ls -lahrt
                 ls -lahrt CNE-Practical-Project/infrastructure/pytest_vm
                 cd CNE-Practical-Project/infrastructure/pytest_vm
+                aws configure
+                AWS_ACCESS_KEY_ID: AKIAYXHLMZWYHUIFYFMF
+                AWS_SECRET_ACCESS_KEY: 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
+                AWS_DEFAULT_REGION: eu-west-1
                 terraform init
                 terraform plan
                 terraform apply --auto-approve
