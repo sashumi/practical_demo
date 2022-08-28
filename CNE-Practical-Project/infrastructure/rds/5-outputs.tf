@@ -1,7 +1,7 @@
-output "prod_rds_hostname" {
-  value = module.rds_production.address
-}
+#output "prod_rds_hostname" {
+#  value = module.rds_production.address
+#}
 
-output "test_rds_hostname" {
-  value = module.rds_test.address
-}
+#output "test_rds_hostname" {
+#  value = module.rds_test.address
+#}
