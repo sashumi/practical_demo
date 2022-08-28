@@ -3,11 +3,11 @@ pipeline {
   stages {
     stage('Build PyTest VM') {
       steps {
-                echo "Create PyTest VM using Jenkins Ansible Role with limited tag"
-                sh 'pwd'
-                sh 'ls -lahrt'
-                sh 'ls -lahrt CNE-Practical-Project/infrastructure/pytest_vm'
-                sh 'cd CNE-Practical-Project/infrastructure/pytest_vm'
+        sh '''  echo "Create PyTest VM using Jenkins Ansible Role with limited tag"
+                pwd
+                ls -lahrt
+                ls -lahrt CNE-Practical-Project/infrastructure/pytest_vm
+                cd CNE-Practical-Project/infrastructure/pytest_vm
                 terraform init
                 terraform plan
                 terraform apply --auto-approve
