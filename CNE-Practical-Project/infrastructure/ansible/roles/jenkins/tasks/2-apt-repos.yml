@@ -18,12 +18,16 @@
     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
     state: present
 
+- name: Run the equivalent of "apt-get update" as a separate step
+  ansible.builtin.apt:
+    update_cache: yes
+
+
 
 - name: add jenkins repository
   ansible.builtin.apt_repository:
-    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
     state: present
-
 
 # tasks file for repo_installer
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using

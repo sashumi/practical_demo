@@ -5,7 +5,7 @@ variable "vpc_cidr" {
 
 variable "ami" {
   // this is the latest ubuntu 20.04 version in ireland
-  default = "ami-08bac620dc84221eb"
+  default = "ami-0d2a4a5d69e46ea0b"
 }
 
 variable "ssh_pubkey" {

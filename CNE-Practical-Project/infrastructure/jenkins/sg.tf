@@ -12,7 +12,7 @@ resource "aws_security_group" "ssh_sg" {
     cidr_blocks = [
       aws_vpc.project_vpc.cidr_block,
       #"130.43.176.247/32"]
-      "0.0.0.0"]
+      "0.0.0.0/0"]
   }
 
   egress {
@@ -46,7 +46,7 @@ resource "aws_security_group" "allow_80_public_to_elb" {
       #"130.43.176.247/32",
       //https://github.blog/changelog/2019-04-09-webhooks-ip-changes/
       #"140.82.112.0/20"
-      "0.0.0.0"
+      "0.0.0.0/0"
     ]
   }
 
