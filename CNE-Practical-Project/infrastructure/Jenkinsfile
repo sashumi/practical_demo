@@ -1,6 +1,12 @@
 pipeline {
   agent any
   stages {
+
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_DEFAULT_REGION    = credentials('AWS_DEFAULT_REGION')
+    }
     stage('Build PyTest VM') {
       steps {
         sh '''  echo "Create PyTest VM using Jenkins Ansible Role with limited tag"
@@ -8,10 +14,6 @@ pipeline {
                 ls -lahrt
                 ls -lahrt CNE-Practical-Project/infrastructure/pytest_vm
                 cd CNE-Practical-Project/infrastructure/pytest_vm
-                aws configure
-                AWS_ACCESS_KEY_ID: AKIAYXHLMZWYHUIFYFMF
-                AWS_SECRET_ACCESS_KEY: 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
-                AWS_DEFAULT_REGION: eu-west-1
                 terraform init
                 terraform plan
                 terraform apply --auto-approve
