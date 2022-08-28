@@ -37,5 +37,5 @@ data "aws_subnet" "jenkins_subnet" {
 
 
 variable "ami" {
-  default = "ami-08bac620dc84221eb"
+  default = "ami-0d2a4a5d69e46ea0b"
 }
