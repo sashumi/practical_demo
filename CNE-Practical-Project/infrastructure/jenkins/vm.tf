@@ -9,7 +9,6 @@ resource "aws_instance" "jenkins" {
   availability_zone = "eu-west-1c"
   instance_type = "t2.small"
   key_name = aws_key_pair.jenkins_keypair.key_name
-  user_data = local.userdata
   vpc_security_group_ids = [
     aws_security_group.allow_80_from_elb_to_vm.id,
     aws_security_group.ssh_sg.id
