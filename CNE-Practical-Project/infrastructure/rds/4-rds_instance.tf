@@ -4,7 +4,7 @@ module "rds_test" {
   source = "terraform-aws-modules/rds/aws"
 
   identifier = "prj2-rds-test"
-
+  depends_on = [aws_subnet.rds_subnet1,aws_subnet.rds_subnet2,aws_subnet.rds_subnet3]
   engine = "mysql"
   engine_version = "5.7"
   family = "mysql5.7"
@@ -70,6 +70,7 @@ module "rds_production" {
   source = "terraform-aws-modules/rds/aws"
 
   identifier = "prj2-rds-production"
+  depends_on = [aws_subnet.rds_subnet1,aws_subnet.rds_subnet2,aws_subnet.rds_subnet3]
 
   engine = "mysql"
   engine_version = "5.7"
