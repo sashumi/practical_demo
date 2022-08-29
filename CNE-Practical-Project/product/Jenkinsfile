@@ -13,7 +13,7 @@ pipeline {
             mkdir -p ~/.docker
             aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json ~/.docker/config.json
 
-            cd product
+            cd CNE-Practical-Project/product
 
             # run ansible playbook to create image and push to docker hub
             # for testing
