@@ -4,7 +4,7 @@ module "rds_test" {
   source = "terraform-aws-modules/rds/aws"
 
   identifier = "prj2-rds-test"
-  depends_on = [aws_subnet.rds_subnet1,aws_subnet.rds_subnet2,aws_subnet.rds_subnet3]
+
   engine = "mysql"
   engine_version = "5.7"
   family = "mysql5.7"
@@ -30,10 +30,7 @@ module "rds_test" {
     "general"]
 
   multi_az = false
-  subnet_ids = [
-    aws_subnet.rds_subnet1.id,
-    aws_subnet.rds_subnet2.id,
-    aws_subnet.rds_subnet3.id]
+  db_subnet_group_name = aws_db_subnet_group.db_subnet_group_1.name
   vpc_security_group_ids = [
     aws_security_group.rds_sg.id]
 
@@ -70,7 +67,6 @@ module "rds_production" {
   source = "terraform-aws-modules/rds/aws"
 
   identifier = "prj2-rds-production"
-  depends_on = [aws_subnet.rds_subnet1,aws_subnet.rds_subnet2,aws_subnet.rds_subnet3]
 
   engine = "mysql"
   engine_version = "5.7"
@@ -96,9 +92,7 @@ module "rds_production" {
     "general"]
 
   multi_az = true
-  subnet_ids = [
-    aws_subnet.rds_subnet1.id,
-    aws_subnet.rds_subnet2.id]
+  db_subnet_group_name = aws_db_subnet_group.db_subnet_group_2.name
   vpc_security_group_ids = [
     aws_security_group.rds_sg.id]
 

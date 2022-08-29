@@ -64,6 +64,30 @@ resource "aws_subnet" "rds_subnet3" {
   }
 }
 
+resource "aws_db_subnet_group" "db_subnet_group_1" {
+  name       = "test_main"
+  subnet_ids = [aws_subnet.rds_subnet1.id,
+    aws_subnet.rds_subnet2.id,
+    aws_subnet.rds_subnet3.id]
+
+  tags = {
+    Name = "rds_subnet_group_1",
+    Project = "project2",
+    Author = "sashumi"
+  }
+}
+
+resource "aws_db_subnet_group" "db_subnet_group_2" {
+  name       = "prd_main"
+  subnet_ids = [aws_subnet.rds_subnet1.id,
+    aws_subnet.rds_subnet2.id]
+
+  tags = {
+    Name = "rds_subnet_group_2",
+    Project = "project2",
+    Author = "sashumi"
+  }
+}
 
 resource "aws_route_table" "rds_route_table" {
   vpc_id = data.aws_vpc.project2_vpc.id

@@ -27,4 +27,3 @@ data "aws_internet_gateway" "project_igw" {
     Author = "sashumi"
   }
 }
-
