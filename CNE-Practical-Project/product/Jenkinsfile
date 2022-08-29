@@ -9,6 +9,7 @@ pipeline {
     stage('Publish test Images') {
       steps {
         sh '''#Setup docker credentials + push test images
+            aws s3 ls
             mkdir -p ~/.docker
             aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json ~/.docker/config.json
 
