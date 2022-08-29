@@ -11,7 +11,7 @@ pipeline {
         sh '''#Setup docker credentials + push test images
             mkdir -p ~/.docker
             aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json ~/.docker/config.json
-            cd product
+            cd CNE-Practical-Project/product
             # run ansible playbook to create image and push to docker hub
             # for testing
              ansible-playbook image_creator.yml --tags image_test -v
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Perform Image Testing') {
       steps {
-        sh '''cd product
+        sh '''cd CNE-Practical-Project/product
               # downloading rsa key from secure s3 bucket to working directory
                aws s3 cp s3://shamsi-project2/keys/id_rsa .
                chmod 0600 id_rsa
@@ -50,7 +50,7 @@ pipeline {
                mkdir -p ~/.docker
                aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json \
                ~/.docker/config.json
-               cd product
+               cd CNE-Practical-Project/product
                ansible-playbook image_creator.yml --tags publish_image -v
                 # clean up all existing images to make sure new images are built
                 docker rmi -f $(docker images -q)
