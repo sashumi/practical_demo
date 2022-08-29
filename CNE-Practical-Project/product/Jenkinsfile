@@ -6,15 +6,13 @@ pipeline {
         AWS_DEFAULT_REGION    = credentials('AWS_DEFAULT_REGION')
   }
   stages {
-    /* stage('Publish test Images') {
+    stages {
+    stage('Publish test Images') {
       steps {
         sh '''#Setup docker credentials + push test images
-            aws s3 ls
             mkdir -p ~/.docker
             aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json ~/.docker/config.json
-
-            cd CNE-Practical-Project/product
-
+            cd product
             # run ansible playbook to create image and push to docker hub
             # for testing
              ansible-playbook image_creator.yml --tags image_test -v
@@ -24,26 +22,21 @@ pipeline {
 
     stage('Perform Image Testing') {
       steps {
-        sh '''cd CNE-Practical-Project/product
+        sh '''cd product
               # downloading rsa key from secure s3 bucket to working directory
                aws s3 cp s3://shamsi-project2/keys/id_rsa .
                chmod 0600 id_rsa
-
               # run terraform to collect the current private ip of pytest vm
               # in case it was rebuilt
                terraform init
-               terraform apply --auto-approve
-               # terraform destroy --auto-approve
-
+               terraform destroy --auto-approve
               # skipping host fingerprint checking to avoid disruption
                export ANSIBLE_HOST_KEY_CHECKING=False
-
               # perform pre-execution cleanup
                ansible-playbook -i test_inventory -v \
                     image_tester.yml \
                     --tags image_test_cleanup \
                     --private-key id_rsa
-
               # perform docker-compose up and testing
                ansible-playbook -i test_inventory -v \
                      image_tester.yml \
@@ -58,15 +51,13 @@ pipeline {
                mkdir -p ~/.docker
                aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json \
                ~/.docker/config.json
-               cd CNE-Practical-Project/product
+               cd product
                ansible-playbook image_creator.yml --tags publish_image -v
-
                 # clean up all existing images to make sure new images are built
                 docker rmi -f $(docker images -q)
-
                '''
       }
-    } */
+    }
 
     stage('Deploy to EKS') {
       steps {
