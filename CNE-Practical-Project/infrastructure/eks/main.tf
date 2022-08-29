@@ -1,4 +1,3 @@
-/*
 resource "aws_eks_cluster" "cluster" {
   name     = "eks_cluster"
   role_arn = aws_iam_role.eks-role.arn
@@ -15,4 +14,3 @@ resource "aws_eks_cluster" "cluster" {
   ]
 }
 
-*/
