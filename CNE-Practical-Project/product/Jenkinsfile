@@ -33,6 +33,7 @@ pipeline {
               # in case it was rebuilt
                terraform init
                terraform apply --auto-approve
+               # terraform destroy --auto-approve
 
               # skipping host fingerprint checking to avoid disruption
                export ANSIBLE_HOST_KEY_CHECKING=False
@@ -84,11 +85,11 @@ pipeline {
               ansible-playbook decrypt.yml
 
               # setup kubeconfig file
-              eksctl get cluster -n cne-pp
+              eksctl get cluster -n eks_cluster
               aws eks \
                 update-kubeconfig \
                 --region eu-west-1 \
-                --name cne-pp
+                --name eks_cluster
 
               # ensure namespace exists
                kubectl apply -f namespace.yml

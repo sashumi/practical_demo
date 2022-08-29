@@ -16,6 +16,7 @@ pipeline {
                 terraform init
                 terraform plan
                 terraform apply --auto-approve
+                # terraform destroy --auto-approve
                 # the output here is a file called pytest_inventory
                 # the file contains the private IP of the pytest VM
 
@@ -46,6 +47,7 @@ pipeline {
 
                 terraform init
                 terraform plan
+                # terraform destroy --auto-approve
                 terraform apply --auto-approve'''
       }
     }
@@ -60,6 +62,7 @@ pipeline {
                  terraform init
                  terraform plan
                  terraform apply --auto-approve
+                 # terraform destroy --auto-approve
 
                 # this will fail if a cluster already exists
                 # ToDo: something to handle pre-existing cluster
