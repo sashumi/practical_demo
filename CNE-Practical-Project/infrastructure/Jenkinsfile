@@ -6,7 +6,7 @@ pipeline {
         AWS_DEFAULT_REGION    = credentials('AWS_DEFAULT_REGION')
   }
   stages {
-    stage('Build PyTest VM') {
+    /* stage('Build PyTest VM') {
       steps {
         sh '''  echo "Create PyTest VM using Jenkins Ansible Role with limited tag"
                 pwd
@@ -50,7 +50,7 @@ pipeline {
                 # terraform destroy --auto-approve
                 terraform destroy --auto-approve'''
       }
-    }
+    } */
 
     stage('Create EKS Cluster') {
       steps {
