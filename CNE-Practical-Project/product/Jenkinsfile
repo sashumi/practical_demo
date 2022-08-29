@@ -24,7 +24,7 @@ pipeline {
 
     stage('Perform Image Testing') {
       steps {
-        sh '''cd product
+        sh '''cd CNE-Practical-Project/product
               # downloading rsa key from secure s3 bucket to working directory
                aws s3 cp s3://shamsi-project2/keys/id_rsa .
                chmod 0600 id_rsa
@@ -57,7 +57,7 @@ pipeline {
                mkdir -p ~/.docker
                aws s3 cp s3://shamsi-project2/keys/docker-auth-config.json \
                ~/.docker/config.json
-               cd product
+               cd CNE-Practical-Project/product
                ansible-playbook image_creator.yml --tags publish_image -v
 
                 # clean up all existing images to make sure new images are built
@@ -69,7 +69,7 @@ pipeline {
 
     stage('Deploy to EKS') {
       steps {
-        sh '''cd product/kubernetes
+        sh '''cd CNE-Practical-Project/product/kubernetes
               # download ansible vault password
                 aws s3 cp \
                     s3://shamsi-project2/keys/vault_password.txt \
